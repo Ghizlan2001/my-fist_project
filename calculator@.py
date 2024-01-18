@@ -1,18 +1,20 @@
 from tkinter import *
 root = Tk()
-root.geometry("350x410")
+root.geometry("360x420")
 root.title("Calculator")
-root.configure(bg="#17161b")
-
-def Clear():
-    label.config(text="")
-
+# root.configure(bg="#17161b")
+current=""
 def Click(value):
+    global current
     current = label.cget("text")
     label.config(text=current+str(value))
 
+def Clear():
+    global current
+    current=""
+    label.config(text=current)
 
-label = Label(root, text="",bd=5, font=("Arial", 24), width=18, height=2,bg="#fff", justify="right")
+label = Label(root, text="",bd=10, font=("Arial", 24), width=18, height=2,bg="#fff", justify="right")
 label.grid(columnspan=6)
 btn1 = Button(root, text="1",bd=1, width=4, height=1,font=("Arial", 25, "bold"),fg="#fff",bg="#17161b", command = lambda:Click(1))
 btn1.grid(row=4, column=0)
@@ -48,7 +50,7 @@ btn_point = Button(root, text=".", bd=1, width=4, height=1,font=("Arial", 25, "b
 btn_point.grid(row=5, column=2)
 btn_clear = Button(root, text="C",bd=1, width=4, height=1,font=("Arial", 25, "bold"),fg="#fff",bg="pink",command= Clear)
 btn_clear.grid(row=1, column=0)
-btn_pour = Button(root,text="%",bd=1, width=4, height=1,font=("Arial", 25, "bold"),fg="#fff",bg="#17161b", command=Click("%"))
+btn_pour = Button(root,text="%",bd=1, width=4, height=1,font=("Arial", 25, "bold"),fg="#fff",bg="#17161b", command=lambda:Click("%"))
 btn_pour.grid(row=1, column=1)
 
 root.mainloop()
